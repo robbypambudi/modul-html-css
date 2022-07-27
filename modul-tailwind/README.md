@@ -34,7 +34,7 @@ Sebelum mempelajari course Tailwind ini, kamu diharapkan memahami dasar materi d
 
 ## Tailwind Documentation
 
-Sebelum mulai untuk menggunakan Tailwind, kita harus mengenal dokumentasi milik Tailwind terlebih dahulu. Dokumentasi Tailwind ini digunakan sebagai panduan kita dalam menggunakan Tailwind, oleh karena itu dalam penggunaannya nanti kita akan sering melibatkan dokumentasi Tailwind tersebut. 
+Sebelum mulai untuk menggunakan Tailwind, kita harus mengenal dokumentasi milik Tailwind terlebih dahulu. Dokumentasi Tailwind ini digunakan sebagai panduan oleh karena itu dalam penggunaannya kita akan sering melibatkan dokumentasi Tailwind tersebut. 
 Dokumentasi tailwind dapat di akses pada website resmi Tailwind https://tailwindcss.com/docs 
 
 # Setup
@@ -52,6 +52,71 @@ Dalam kesempatan kali ini, kita akan menggunakan 2 cara yang paling mudah dan ce
 
 Untuk mempermudah penggunaan Tailwind, sangat direkomendasikan untuk menggunakan *extension* [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) (untuk vscode)
 
+# Tailwind Concepts
+## Utility-First Fundamental
+Sejauh ini kita telah belajar mengenai HTML serta melakukan styling menggunakan CSS. Dalam menggunakan CSS kita biasanya mulai dengan memberikan class pada suatu tag HTML, lalu melakukan styling untuk class tersebut pada file CSS lain.
+seperti berikut 
+``` html
+    <div class="chat-notification">
+        <div class="chat-notification-logo-wrapper">
+          <img class="chat-notification-logo" src="https://png.pngitem.com/pimgs/s/34-349739_chat-png-icon-free-download-searchpng-transparent-chat.png" alt="ChitChat Logo">
+        </div>
+        <div class="chat-notification-content">
+          <h4 class="chat-notification-title">ChitChat</h4>
+          <p class="chat-notification-message">You have a new message!</p>
+          <p>without Tailwind</p>
+        </div>
+    </div>
+      
+    <style>
+        .chat-notification {
+          display: flex;
+          max-width: 24rem;
+          margin: 0 auto;
+          padding: 1.5rem;
+          border-radius: 0.5rem;
+          background-color: #fff;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .chat-notification-logo-wrapper {
+          flex-shrink: 0;
+        }
+        .chat-notification-logo {
+          height: 3rem;
+          width: 3rem;
+        }
+        .chat-notification-content {
+          margin-left: 1.5rem;
+          padding-top: 0.25rem;
+        }
+        .chat-notification-title {
+          color: #1a202c;
+          font-size: 1.25rem;
+          line-height: 1.25;
+        }
+        .chat-notification-message {
+          color: #718096;
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+    </style>
+```
+Namun dengan menggunakan Tailwind kita dapat membuat hal yang serupa dengan memanfaatkan class-class yang telah disediakan oleh Tailwind seperti berikut
+```html
+<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+  <div class="shrink-0">
+    <img class="h-12 w-12" src="https://png.pngitem.com/pimgs/s/34-349739_chat-png-icon-free-download-searchpng-transparent-chat.png" alt="ChitChat Logo">
+  </div>
+  <div>
+    <div class="text-xl font-medium text-black">ChitChat</div>
+    <p class="text-slate-500">You have a new message!</p>
+    <p>with Tailwind</p>
+  </div>
+</div>
+```
+![image](https://user-images.githubusercontent.com/70748569/181249005-0489b42a-87f6-42ed-a2e4-c2caed2fcfa8.png)
+
+Dengan *utility-first* frameworks (dalam hal ini: Tailwind) yang menyediakan low-level class seperti margin, padding, color dll. kita dapat mengkostumisasi design web yang kita inginkan langsung dari file HTML.
 
 # note
 Setting up tailwind 2.0/ installation
@@ -143,3 +208,4 @@ play cdn access
 
 
 # Referensi
+
