@@ -15,7 +15,7 @@
 
 Apa itu Tailwind? 
 > ### Rapidly build modern websites without ever leaving your HTML. 
-A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup 
+> A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup 
 >
 >~ [tailwindcss.com](https://tailwindcss.com/)
 
@@ -34,7 +34,7 @@ Sebelum mempelajari course Tailwind ini, kamu diharapkan memahami dasar materi d
 
 ## Tailwind Documentation
 
-Sebelum mulai untuk menggunakan Tailwind, kita harus mengenal dokumentasi milik Tailwind terlebih dahulu. Dokumentasi Tailwind ini digunakan sebagai panduan oleh karena itu dalam penggunaannya kita akan sering melibatkan dokumentasi Tailwind tersebut. 
+Sebelum mulai untuk menggunakan Tailwind, kita harus mengenal dokumentasi milik Tailwind terlebih dahulu. Dokumentasi Tailwind ini digunakan sebagai panduan oleh karena itu dalam penggunaannya kita akan sering melibatkan dokumentasi Tailwind tersebut. <br>
 Dokumentasi tailwind dapat di akses pada website resmi Tailwind https://tailwindcss.com/docs 
 
 # Setup
@@ -114,9 +114,287 @@ Namun dengan menggunakan Tailwind kita dapat membuat hal yang serupa dengan mema
   </div>
 </div>
 ```
-![image](https://user-images.githubusercontent.com/70748569/181249005-0489b42a-87f6-42ed-a2e4-c2caed2fcfa8.png)
 
-Dengan *utility-first* frameworks (dalam hal ini: Tailwind) yang menyediakan low-level class seperti margin, padding, color dll. kita dapat mengkostumisasi design web yang kita inginkan langsung dari file HTML.
+![image](https://user-images.githubusercontent.com/70748569/181674826-cb6ec486-bcc9-457a-944c-30038ee25404.png)
+
+Dengan *utility-first* frameworks (dalam hal ini: Tailwind) yang menyediakan low-level class seperti margin, padding, color dll. kita dapat mengkostumisasi design web yang kita inginkan dengan lebih leluasa langsung dari file HTML.
+
+## Basic CSS with Tailwind
+### CSS Syntax vs Tailwind Utility
+Pada penulisan syntax CSS kita mengenal tentang `selector`, `property`, dan `value`
+
+![image](https://user-images.githubusercontent.com/70748569/181472135-cd5da443-b710-455b-9aab-fbc394a02acb.png)
+```html
+    <h1 class="big-text">Hello World</h1>
+      
+    <style>
+        .big-text {
+            font-size: 20px;
+        }
+    </style>
+```
+Tidak jauh berbeda, utility class yang telah disediakan oleh Tailwind juga memiliki pola yang cukup mirip. Secara umum bagian pertama pada class merujuk pada property CSS yang akan digunakan selanjutnya diikuti dengan value dari property yang diinginkan.
+```html
+    <h1 class="text-xl">Hello World</h1>
+```
+`text` merujuk pada property untuk font, `xl` menunjukan 2 hal, yaitu property yang akan diubah merupakan *size* dari font dan besarnya adalah xl = 1.25rem = 20px sesuai pada dekumentasi Tailwind [berikut](https://tailwindcss.com/docs/font-size#setting-the-font-size).
+
+### CSS Basic with Tailwind
+#### Box Model
+Kita telah mempelajari dalam memberikan *styling* pada Boxmodel terdapat beberapa property yang dapat kita gunakan yaitu Margin, Border, Padding, dan Content dari tag HTML itu sediri
+
+
+![image](https://user-images.githubusercontent.com/68275535/130476218-d8c1b98d-1af8-4e64-ac0c-8a8186c9143a.png)
+
+1. Margin [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/margin)
+
+| Tailwind   | CSS        | Description  |
+| ---------- |:----------| -----------|
+| m-0       | margin: 0px;   | memberikan margin dari seluruh arah(atas, kanan, bawah, kiri)            |
+| mx-0    |     margin-left: 0px; <br>margin-right: 0px;    |  memberikan margin secara horizontal          |
+|      my-0      |margin-top: 0px; <br> margin-bottom: 0px;            |    memberikan margin secara vertical         |
+|  mt-0          |   margin-top: 0px         |       Memberikan margin dari satu arah tertentu      |
+|  mb-0          |   margin-bottom: 0px         |     -        |
+|  mr-0          |   margin-right: 0px          |      -       |
+|  ml-0          |   margin-left: 0px          |        -     |
+
+
+
+2. Padding [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/padding)
+
+| Tailwind   | CSS        | Description  |
+| ---------- |:----------| -----------|
+| p-0       | padding: 0px;   | memberikan padding dari seluruh arah(atas, kanan, bawah, kiri)            |
+| px-0    |     padding-left: 0px; <br>padding-right: 0px;    |  memberikan padding secara horizontal          |
+| py-0      |padding-top: 0px; <br> padding-bottom: 0px;            |    memberikan padding secara vertical         |
+| pt-0          |   padding-top: 0px         |       Memberikan padding dari satu arah tertentu      |
+| pb-0          |   padding-bottom: 0px         |     -        |
+| pr-0          |   padding-right: 0px          |      -       |
+| pl-0          |   padding-left: 0px          |        -     |
+
+Berikut contoh implementasinya
+
+![image](https://user-images.githubusercontent.com/70748569/181518177-51241529-e66a-496d-abcc-b6ff12482c98.png)
+
+```html
+    <div class="pt-6 ...">pt-6</div>
+    <div class="px-8 ...">px-8</div>
+    <div class="py-8 ...">py-8</div>
+    <div class="p-8 ...">p-8</div>
+```
+
+3. Border [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/border-width)
+
+Untuk informasi lebih lengkap mengenai property/value lainnya yang tersedia silahkan melihat dokumentasi Tailwind yang telah tersedia.
+
+#### Color [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/customizing-colors)
+Dengan tailwind kita dapat memberikan warna pada suatu property layaknya saat menggunakan CSS seperti biasannya. Untuk menambahkan warna pada suatu property kita hanya perlu menuliskan nama warna tersebut dan tingkat kepekatan warna.
+
+```html
+    <h1 class="text-blue-500 bg-teal-200/80">Ini Warna Biru</h1>
+```
+
+![image](https://user-images.githubusercontent.com/70748569/181491399-14f3b500-baa1-4430-b2c1-0e54a59843dd.png)
+- `text, bg` menunjukkan property yang akan diberikan warna
+- `blue, teal` menunjukkan nama warna yang akan digunakan
+- `500, 200` menunjukkan tingkat kepekatan warna yang digunakan
+- `/80` bersifat optional, value ini akan menentukan tingkat opasitas dari warna yang diberikan 
+
+![image](https://user-images.githubusercontent.com/70748569/181488904-e0de49c0-74e4-41c6-820f-4a5930fc9792.png)
+
+Untuk informasi lebih lengkap mengenai property/value lainnya yang tersedia silahkan melihat dokumentasi Tailwind yang telah tersedia.
+
+## States Styling (Hover, Focus, Active, etc) [\(￣︶￣*\))](https://tailwindcss.com/docs/hover-focus-and-other-states)
+Dalam styling menggunakan CSS kita dapat menggunakan *pseudo-class* seperti:
+- `hover`: Kondisi disaat pointer berada di pada element tertentu
+- `focus`: Kondisi disaat suatu element dalam keadaan fokus seperti saat mengetik pada element input
+- `active`: Kondisi disaat suatu element sedang dalam keadaan aktif, seperti disaat element button ditekan
+-dll.
+
+contohnya: 
+```CSS
+.btn-primary {
+  background-color: #white;
+  /* ... */
+}
+.btn-primary:hover {
+  background-color: #black;
+  transform: scale(1.1);
+}
+```
+Sebelum Hover
+<br>
+
+![image](https://user-images.githubusercontent.com/70748569/181544479-e6f0ad30-789e-432d-9738-50c7ee9c1bdc.png)<br>
+
+Setelah di hover <br>
+![image](https://user-images.githubusercontent.com/70748569/181545063-57f2999b-fa0c-41c1-b8e0-e158bcb72d07.png)
+
+
+Tailwind juga mampu mengakomodasi styling dalam kondisi-kondisi tersebut dengan lebih mudah dan simpel. 
+
+Kita hanya perlu menambahkah `hover` atau kondisi lainnya sebagai *prefix* diikuti dengan titik dua (`:`) lalu class utilitas yang ingin kita gunakan pada kondisi tersebut.
+
+```html
+<button class="bg-teal-300 hover:bg-sky-600 hover:scale-110 ..."> Button</button> 
+```
+Dengan begitu kita bisa mendapatkan hasil yang sama dalam kondisi hover. Kita dapat menggunakan utilitas apapun yang memungkinkan seperti mengubah ukuran, jenis/warna teks dll. 
+
+Tidak hanya terbatas pada pseudo-class seperti hover, Tailwind juga dapat mengatasi kondisi-kondisi lain diantaranya:
+1. Pseudo-classes, seperti :hover, :focus, :first-child, and :required
+2. Pseudo-elements, seperti ::before, ::after, ::placeholder, and ::selection
+3. Media queries, seperti *responsive breakpoints*, mode gelap, dan prefers-reduced-motion
+4. Attribute selectors, seperti [dir="rtl"] dan [open]
+
+Kita juga dapat menumpuk beberapa kondisi yang memungkinkan untuk kondisi yang lebih spesifik sekaligus seperti berikut:
+```html
+<button class="md:hover:bg-fuchsia-600 ...">Button</button>
+```
+
+## Responsive Design [o(*￣▽￣*)ブ](https://tailwindcss.com/docs/responsive-design)
+Tailwind juga memudahkan kita dalam membuat design web yang responsif untuk berbagai macam perangkat.
+
+Dengan CSS biasa, kita biasanya akan membuat design yang responsive dengan mengunakan media-query untuk tiap-tiap port yang diinginkan.
+
+![image](https://user-images.githubusercontent.com/70748569/181670961-5fe305a5-f3cc-4d57-a57a-83e0111438a0.png)
+
+
+```css
+.kotak{
+    background-color: white;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 640px) {
+    .kotak{
+        background-color: gray;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .kotak{
+        background-color: black;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1024px) {
+    .kotak{
+        background-color: red;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1280px) {
+    .kotak{
+        background-color: blue;
+    }
+}
+
+```
+Untuk mempermudah pembuatan design web yang responsif, Tailwind telah menyediakan media-query yang untuk semua class-class utilitas yang tersedia. Kita hanya perlu menambahkan prefix seperti pada menambahkan pseudo-class yang telah kita pelajari sebelumnya.
+```html
+<div class="bg-white sm:bg-gray-500 md:bg-black lg:bg-red-500 xl:bg-blue-600 ...">
+    KOTAK   
+</div>
+```
+Berikut adalah default *breakpoint* yang digunakan Tailwind untuk setiap prefixnya
+
+
+| Breakpoint prefix | Minimum width | CSS                                 |
+|-------------------|---------------|-------------------------------------|
+| sm                | 640px         | @media (min-width: 640px) { ... }   |
+| md                | 768px         | @media (min-width: 768px) { ... }   |
+| lg                | 1024px        | @media (min-width: 1024px) { ... }  |
+| xl                | 1280px        | @media (min-width: 1280px) { ... }  |
+| 2xl               | 1536px        | @media (min-width: 1536px) { ... }  |
+
+
+### Mobile First Design
+Secara default, Tailwind menerapkan Mobile First dalam sistem breakpoint yang digunakan. Hal ini berarti untuk class utilitas biasa tanpa prefix breakpioint seperti `uppercase` saja akan diterapkan untuk semua ukuran layar, sedangkan untuk class utilitas yang memilki prefix breakpoin seperti `lg:uppercase` hanya akan diterapkan untuk layar mulai dari `xl` (1024px) keatas sampai breakpoint lainnya yang lebih besar.
+
+```html
+<div class="bg-white sm:bg-gray-500 md:bg-black lg:bg-red-500 xl:bg-blue-600 ...">
+    KOTA
+</div>
+```
+Seperti pada contoh di atas
+- `bg-white` diterapkan secara keseluruhan layar dimana pada ukuran layar tersebut tidak diatur oleh breakpoint apapun. Oleh karena itu `bg-white` hanya diterapkan pada ukuran layara < 640px karen untuk ukuran layar >= 640px telah diatur oleh breackpoint prefix `sm`
+- `sm:bg-gray-500` diterapkan hanya untuk layar 640px keatas sampai ada breakpoint lainnya. 
+- `md:bg-black` diterapkan hanya untuk layar 768px keatas sampai ada breakpoint lainnya.
+- dst.
+
+# Reusing Style
+Dalam melakukan styling tentunya kita akan sering bertemu pada kondisi dimana kita akan menggunakan style yang sama untuk elemen-elemen yang serupa.
+
+![image](https://user-images.githubusercontent.com/70748569/181678313-a7116aba-141a-4a39-9cd8-2df156eed41e.png)
+```html
+<div>
+    <div class="flex items-center space-x-2 text-base">
+      <h4 class="font-semibold text-slate-900">Kontributor</h4>
+      <span class="rounded-full bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">205</span>
+    </div>
+    <div class="mt-3 flex -space-x-2 overflow-hidden">
+      <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white" src="https://picsum.photos/200/300?avatar=2" alt=""/>
+      <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white" src="https://picsum.photos/200/300?avatar=3" alt=""/>
+      <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white" src="https://picsum.photos/200/300?avatar=4" alt=""/>
+      <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white" src="https://picsum.photos/200/300?avatar=5" alt=""/>
+    </div>
+    <div class="mt-3 text-sm font-medium">
+      <a href="#" class="text-teal-500">+ 201 Lainnya</a>
+    </div>
+</div>
+```
+Dari contoh di atas dapat dilihat bahwa terjadi banyak pengulangan class
+``inline-block h-12 w-12 rounded-full ring-2 ring-white``. Tentunya hal tersebut kurang efisien.
+Sebenarnya terdapat beberapa cara untuk mengatasi hal tersebut, seperti menggunakan perluang (looping) dengan memanfaatkan JavaScript, atau kembali membuat CSS class seperti biasanya. Akan tetapi Tailwind punya caranya sendiri.
+### Membuat/Mengekstrak Class dengan @apply
+Untuk mengatasi masalah diatas Tailwind menyediakan fitur dimana kita dapat membuat class baru dengan tetap menggunakan class utilitas dari Tailwind itu sendiri seperti berikut.
+1. Menentukan nama class yang akan kita implementasikan
+```html
+    <div class="mt-3 flex -space-x-2 overflow-hidden">
+      <img class="frame-bulat-bulat" src="https://picsum.photos/200/300?avatar=2" alt=""/>
+      <img class="frame-bulat-bulat" src="https://picsum.photos/200/300?avatar=3" alt=""/>
+      <img class="frame-bulat-bulat" src="https://picsum.photos/200/300?avatar=4" alt=""/>
+      <img class="frame-bulat-bulat" src="https://picsum.photos/200/300?avatar=5" alt=""/>
+    </div>
+```
+disini ``inline-block h-12 w-12 rounded-full ring-2 ring-white`` telah diubah menjadi ``frame-bulat-bulat``. Akan tetapi Tailwind belum memiliki class dengan nama ``frame-bulat-bulat``, oleh karena itu kita akan "mengenalkan" class tersebut kepada Tailwind.
+
+2. Membuat class baru dengan @apply pada layer yang sesai
+- Jika menggunakan CLI tambahkan class pada file `input.css`.
+```
+/* input.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* tambahkan class berdasarkan layer yang sesuai*/
+@layer components{
+    .frame-bulat-bulat{
+        @apply inline-block h-12 w-12 rounded-full ring-2 ring-white;
+    }
+}
+```
+
+- Jika menggunakan Play CDN tambahkan class di tag `<style type="text/tailwindcss">` pada `<head>` 
+```html
+<head>
+   <!-- ... -->
+    <style type="text/tailwindcss">
+        @layer component {
+          .frame-bulat-bulat {
+            @apply inline-block h-12 w-12 rounded-full ring-2 ring-blue-200;
+          }
+        }
+    </style>
+</head>
+```
+Dengan begitu sekarang Tailwind telah mengenal class `frame-bulat-bulat` sebagai `inline-block h-12 w-12 rounded-full ring-2 ring-white` yang kita letakan pada layer `component`.
+
+
+# Referensi
+- https://tailwindcss.com/
 
 # note
 Setting up tailwind 2.0/ installation
@@ -207,5 +485,8 @@ arbitary property, <img class:[clip-path:circle(70%_at_20%_30%)] >
 play cdn access
 
 
-# Referensi
+
+- apa itu tailwind dan kenapa harus pake tailwind dengan pakai tailwind gimana, gk pake tailwind gimna
+- tambahin perbandingan framework yang pake utility first sama enggak
+- perbedaan kekurangan kelebihan dari dengan pakai CLI atau pake Play CDN
 
