@@ -9,6 +9,25 @@
 
 - [Setup](#setup)
   - [Instalation](#installation)
+
+- [Tailwind Concepts](#tailwind-concepts)
+  - [Utility-First Fundamental](#utility-first-fundamental)
+  - [Basic CSS with Tailwind](#basic-css-with-tailwind)
+    - [CSS Syntax vs Tailwind Utility](#css-syntax-vs-tailwind-utility)
+    - [Arbitary Value](#arbitary-value)
+    - [Arbitary Variant](#arbitary-variant)
+    - [Box Model](#box-model)
+    - [Color](#css)
+  - [States Styling (Hover, Focus, Active, etc)](#state-styling-(hover,-focus,active,-etc))
+  - [Responsive Design](#responsive-design)
+    - [Mobile First Design](#mobile-first-design)
+  - [Reusing Style](#reusing-style)
+  - [Tailwind Directives](#tailwind-directives)
+    - [@tailwind](#tailwind)
+    - [@layer](#layer)
+    - [@apply](#apply)
+
+
 - [Referensi](#referensi)
 
 # Intro
@@ -21,6 +40,9 @@ Apa itu Tailwind?
 
  
 Tailwind CSS merupakan sebuah *utility-first CSS framework*. Tailwind dapat diibaratkan sebagai kerangka kerja yang akan memudahkan penggunanya dalam melakukan *styling* pada web dengan menggunakan CSS.
+
+<!-- # css. -->
+
 
 Tailwind akan menyediakan `class` utilitas yang dapat kita gunakan langsung dari HTML seperti class `pt-3` untuk menambahkan padding sebesar 16px, `text-center` untuk membuat teks rata tengah (justify) dan masih banyak class-class utilitas lainnya.
 
@@ -154,7 +176,7 @@ Hal ini dapat digunakan dengan mudah. Kita cukup menambahkan value yang kita ing
 ```
 ![image](https://user-images.githubusercontent.com/70748569/181917046-d1b521fd-0c73-44f8-ae2e-8f499f8b3fb2.png)
 
-#### Arbitrary Variant
+#### Arbitary Variant
 Jika arbitrary value digunakan untuk membuat costume value, Dengan arbitrary variant kita dapat membuat costume variant untuk dijadikan layaknya kostum selector. Ini merupakan fitur baru yang ditambahkan Tailwind pada update Tailwind 3.1 .
 
 Tidak jauh berbeda, kita hanya perlu menambahakan *bracket* disertai costume property yang akan diberikan. Fitur ini dapat dimanfaatkan membuat costume selector untuk mengimplentasikan class utilitas pada suatu element yang spesifik.
@@ -194,8 +216,6 @@ Dengan begitu element ke-2 dari belakang tidak akan dikenakan styling seperti ya
 
 untuk informasi mengenai jenis selector, dapat diliat pada link [berikut](https://www.w3schools.com/cssref/css_selectors.asp)
 
-
-### CSS Basic with Tailwind
 #### Box Model
 Kita telah mempelajari dalam memberikan *styling* pada Boxmodel terdapat beberapa property yang dapat kita gunakan yaitu Margin, Border, Padding, dan Content dari tag HTML itu sediri
 
