@@ -36,6 +36,7 @@ Sebelum mempelajari course Tailwind ini, kamu diharapkan memahami dasar materi d
 
 Sebelum mulai untuk menggunakan Tailwind, kita harus mengenal dokumentasi milik Tailwind terlebih dahulu. Dokumentasi Tailwind ini digunakan sebagai panduan oleh karena itu dalam penggunaannya kita akan sering melibatkan dokumentasi Tailwind tersebut. <br>
 Dokumentasi tailwind dapat di akses pada website resmi Tailwind https://tailwindcss.com/docs 
+<br><br><br>
 
 # Setup
 ## Installation
@@ -52,6 +53,7 @@ Dalam kesempatan kali ini, kita akan menggunakan 2 cara yang paling mudah dan ce
 
 Untuk mempermudah penggunaan Tailwind, sangat direkomendasikan untuk menggunakan *extension* [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) (untuk vscode)
 
+<br><br><br>
 # Tailwind Concepts
 ## Utility-First Fundamental
 Sejauh ini kita telah belajar mengenai HTML serta melakukan styling menggunakan CSS. Dalam menggunakan CSS kita biasanya mulai dengan memberikan class pada suatu tag HTML, lalu melakukan styling untuk class tersebut pada file CSS lain.
@@ -138,6 +140,60 @@ Tidak jauh berbeda, utility class yang telah disediakan oleh Tailwind juga memil
     <h1 class="text-xl">Hello World</h1>
 ```
 `text` merujuk pada property untuk font, `xl` menunjukan 2 hal, yaitu property yang akan diubah merupakan *size* dari font dan besarnya adalah xl = 1.25rem = 20px sesuai pada dekumentasi Tailwind [berikut](https://tailwindcss.com/docs/font-size#setting-the-font-size).
+
+#### Arbitary Value
+Dengan Menggunakan Tailwind atau frameworks CSS lainnya, kita akan terbiasa untuk menggunakan default value atau batasan yang telah disediakan framework atau menggunakan costume value yang kita definisikan sendiri. Akan tetapi pada suatu kondisi kita akan mendapatkan kondisi dimana kita perlu keluar dari batasan yang telah didefinisikan framework untuk mendapatkan hasil yang benar-benar spesifik seperti yang kita inginkan. 
+
+Mungkin pada kondisi tersebut kita membutuhkan sesuatu seperti `padding: 25.5px, background-color: #39b2f3`. Hal tersebut mungkin tidak disediak oleh class utlitas default milik Tailwind, akan tetapi Tailwind telah memberikan kita fitur untuk memasukkan nilai sembarang sesuai keinginan kita terhadapa class utilitas yang dimiliki Tailwind yang disebut dengan *arbitrary-value*. 
+
+Hal ini dapat digunakan dengan mudah. Kita cukup menambahkan value yang kita inginkan kedalam *bracket* `[value]` setelah property class yang kita inginkan.
+```html
+      <div class="p-[25.5px] bg-[#39b2f3]">
+        Arbitrary Value
+      </div>
+```
+![image](https://user-images.githubusercontent.com/70748569/181917046-d1b521fd-0c73-44f8-ae2e-8f499f8b3fb2.png)
+
+#### Arbitrary Variant
+Jika arbitrary value digunakan untuk membuat costume value, Dengan arbitrary variant kita dapat membuat costume variant untuk dijadikan layaknya kostum selector. Ini merupakan fitur baru yang ditambahkan Tailwind pada update Tailwind 3.1 .
+
+Tidak jauh berbeda, kita hanya perlu menambahakan *bracket* disertai costume property yang akan diberikan. Fitur ini dapat dimanfaatkan membuat costume selector untuk mengimplentasikan class utilitas pada suatu element yang spesifik.
+barikut contoh implementasinya
+
+![image](https://user-images.githubusercontent.com/70748569/181918443-64a8319a-6807-4fd4-b0d0-87f4ad26d364.png)
+
+```html
+          <div class="mt-3 flex space-x-2 overflow-hidden">
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=2" alt=""/>
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=3" alt=""/>
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=4" alt=""/>
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=5" alt=""/>
+          </div>
+
+```
+Bagaiman jika ingin selain element nomor 2 yang terakhir memiliki border dengan warna `teal-400`. Hal ini dapat mudah dilakukan jika kita mengetahui berapa jumlah element yang ada dengan cukup menambahkan styling khusus untuk element tersebut. Tetapi jika jumlah element bersifat dinamis, jumlahnya menjadi tidak menentu, hal ini menjadi sulit untuk dilakukan. Pada kondisi ini arbitrary variant dapat berguna untuk menciptakan selector khusus yang akan merujuk pada element tersebut. 
+```html
+          <div class="mt-3 flex space-x-2 overflow-hidden [&>:not(:nth-last-child(2))]:border-teal-400">
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=2" alt=""/>
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=3" alt=""/>
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=4" alt=""/>
+            <img class="rounded-3xl border-4 h-28" src="https://picsum.photos/200/300?avatar=5" alt=""/>
+          </div>
+
+```
+![image](https://user-images.githubusercontent.com/70748569/181918812-b7e2ef9c-a3ed-46ce-bc72-115d3e054cae.png)
+
+Pada contoh diatas, kita menambahkan `[&>:not(:nth-last-child(2))]:border-teal-400` pada class milik parent element. 
+- `&` merupakan selector yang merujuk pada element utama yang merupakan tempat class ini ditambahkan.
+- `>` menunjukkan hubungan antara selector element di sebelah kiri dengan selector elemen disebelah kanan adalah hubungan parent to child (*[parent] > [child]*) 
+- `:not()` negasi selector, mengambil "yang bukan"
+- `:nth-last-child(2)` selector yang memilih child ke-n dari belakang/terakhir
+- `:not(:nth-last-child(2))` = "ambil yang bukan child ke-2 dari belakang"
+
+Dengan begitu element ke-2 dari belakang tidak akan dikenakan styling seperti yang telah kita implementasikan diatas.
+
+untuk informasi mengenai jenis selector, dapat diliat pada link [berikut](https://www.w3schools.com/cssref/css_selectors.asp)
+
 
 ### CSS Basic with Tailwind
 #### Box Model
@@ -323,6 +379,7 @@ Seperti pada contoh di atas
 - `md:bg-black` diterapkan hanya untuk layar 768px keatas sampai ada breakpoint lainnya.
 - dst.
 
+<br><br><br>
 # Reusing Style
 Dalam melakukan styling tentunya kita akan sering bertemu pada kondisi dimana kita akan menggunakan style yang sama untuk elemen-elemen yang serupa.
 
@@ -390,8 +447,7 @@ disini ``inline-block h-12 w-12 rounded-full ring-2 ring-white`` telah diubah me
 ```
 Dengan begitu sekarang Tailwind telah mengenal class `frame-bulat-bulat` sebagai `inline-block h-12 w-12 rounded-full ring-2 ring-white` yang kita letakan pada layer `component`.
 
-
-
+<br><br><br>
 # Tailwind Directives [ヾ(￣▽￣) ](https://tailwindcss.com/docs/functions-and-directives)
 ### Directives 
 Directives merupakan custom [*at-rules*](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule) khusus yang dimiliki Tailwind. Tailwind Directives ini memberikan fungsionalitas spesial untuk proyek/web yang menggunakan Tailwind.
@@ -521,7 +577,9 @@ Untuk menggunakan perintah `!important` kita hanya perlu menambahakan `!` pada s
 
 ```
 
-
+<br><br><br>
 # Referensi
 - https://tailwindcss.com/
 https://darkghosthunter.medium.com/tailwind-the-base-the-components-and-the-utilities-a81137c52534
+- https://www.w3schools.com/cssref/css_selectors.asp
+- https://darkghosthunter.medium.com/tailwind-the-base-the-components-and-the-utilities-a81137c52534
