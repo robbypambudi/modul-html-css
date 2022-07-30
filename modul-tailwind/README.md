@@ -203,6 +203,7 @@ Kita telah mempelajari dalam memberikan *styling* pada Boxmodel terdapat beberap
 ![image](https://user-images.githubusercontent.com/68275535/130476218-d8c1b98d-1af8-4e64-ac0c-8a8186c9143a.png)
 
 1. Margin [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/margin)
+
 | Tailwind   | CSS        | Description  |
 | ---------- |:----------| -----------|
 | m-0       | margin: 0px;   | memberikan margin dari seluruh arah(atas, kanan, bawah, kiri)            |
@@ -215,7 +216,9 @@ Kita telah mempelajari dalam memberikan *styling* pada Boxmodel terdapat beberap
 
 
 
+
 2. Padding [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/padding)
+
 | Tailwind   | CSS        | Description  |
 | ---------- |:----------| -----------|
 | p-0       | padding: 0px;   | memberikan padding dari seluruh arah(atas, kanan, bawah, kiri)            |
