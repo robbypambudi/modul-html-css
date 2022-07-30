@@ -147,7 +147,6 @@ Kita telah mempelajari dalam memberikan *styling* pada Boxmodel terdapat beberap
 ![image](https://user-images.githubusercontent.com/68275535/130476218-d8c1b98d-1af8-4e64-ac0c-8a8186c9143a.png)
 
 1. Margin [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/margin)
-
 | Tailwind   | CSS        | Description  |
 | ---------- |:----------| -----------|
 | m-0       | margin: 0px;   | memberikan margin dari seluruh arah(atas, kanan, bawah, kiri)            |
@@ -161,7 +160,6 @@ Kita telah mempelajari dalam memberikan *styling* pada Boxmodel terdapat beberap
 
 
 2. Padding [(☞ﾟヮﾟ)☞](https://tailwindcss.com/docs/padding)
-
 | Tailwind   | CSS        | Description  |
 | ---------- |:----------| -----------|
 | p-0       | padding: 0px;   | memberikan padding dari seluruh arah(atas, kanan, bawah, kiri)            |
@@ -393,100 +391,137 @@ disini ``inline-block h-12 w-12 rounded-full ring-2 ring-white`` telah diubah me
 Dengan begitu sekarang Tailwind telah mengenal class `frame-bulat-bulat` sebagai `inline-block h-12 w-12 rounded-full ring-2 ring-white` yang kita letakan pada layer `component`.
 
 
+
+# Tailwind Directives [ヾ(￣▽￣) ](https://tailwindcss.com/docs/functions-and-directives)
+### Directives 
+Directives merupakan custom [*at-rules*](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule) khusus yang dimiliki Tailwind. Tailwind Directives ini memberikan fungsionalitas spesial untuk proyek/web yang menggunakan Tailwind.
+
+> ℹ **at-rules** merupakan salah satu perintah CSS yang memberikan instruksi untuk css dalam berprilaku. At-rules dimulai dengan tanda `@`. <br> 
+> contohnya `@media`: sekelompok aturan yang akan diaplikaskan jika perangkat memenuhi kriteria yang didefinisikan dengan *media-query*
+
+Berikut macam-macam Tailwind Directives
+
+## @tailwind
+`@tailwind` directive digunakan untuk meng-*insert* styling/rule dari `base`, `componnent`, `utilities` dan `variants` kedalam CSS.   
+
+1. `@tailwind base` memasukkan styling dasar Tailwind dan styling dasar apa pun yang didaftarkan oleh plugin. contohnya pada css reset milik Tailwind, seperti menghilang defaul margini yang dimiliki beberapa tag html berikut. 
+
+
+```css
+blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre 
+{
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+```
+
+2. `@tailwind components` memasukkan class components Tailwind dan class components apa pun yang didaftarkan oleh plugin. berisi komponent yang berisi sekumpulan class utilitas untuk membuat sebuah kelas komponent CSS tertentu 
+
+
+3. `@tailwind utilities` memasukkan class utilitas Tailwind dan class utilitas apa pun yang didaftarkan oleh plugin. Disinilah letak semua class utilitas yang kita gunakan untuk seperti `p-2`, `mx-auto`, `rounded-xl` dll.
+
+4. `@tailwind variants` directive ini digunakan untuk mengontrol kondisi seperti hover, focus, responsive, mode gelap, dan varian lain dari setiap kelas. Jika dihilangkan, Tailwind akan menambahkan kelas-kelas ini ke bagian akhir dari stylessheet (file css) secara default.
+
+## @layer
+Jika `@tailwind` digunakan untuk memasukkan default styling milik tailwind, `@layer` digunakan untuk memasukkan class kostum milik kita sendiri. Pada saat kita menggunakan `@tailwind base, components, utilities, variants` tiap-tiap directive `@tailwind` telah memiliki *layer*/lapisan sendiri untuk menghindari kesalahan dalam persoalan *specifity*  dimana class yang lebih spesifik akan diutamakan dalam pengimplementasiannya. Secara urutan `base` berada pada layer paling pertama. 
+`@layer` digunakan untuk mendefinisikan dimana layer/letak kostum class yang akan dibuat.
+berikut contohnya:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+}
+```
+
+@apply
+Tailwind directives yang terkahir adalah `@apply`. Seperti yang telah kita pelajari pada *Reusing Style*, Tailwind directive ini digunakan untuk membuat kostum css sendiri dengan tetap menggunakan class utilitas milik Tailwind. 
+contohnya:
+```css
+.select2-dropdown {
+  @apply rounded-b-lg shadow-md;
+}
+.select2-search {
+  @apply border border-gray-300 rounded;
+}
+.select2-results__group {
+  @apply text-lg font-bold text-gray-900;
+}
+```
+Semua perintah yang dibuat dengan `@apply` tidak akan memiliki `!important` yang biasa digunakan dalam css untuk memakai suatu perintah tanpa memperhatikan *specifity* class tersebut.
+```css
+/* Input */
+.foo {
+  color: blue !important;
+}
+
+.bar {
+  @apply foo;
+}
+
+/* Output */
+.foo {
+  color: blue !important;
+}
+
+.bar {
+  color: blue;
+}
+```
+
+Untuk menggunakan perintah `!important` kita hanya perlu menambahakan `!` pada suatu utilitas class yang digunakan, atau menambahkan `!important` di depan kelas-kelas utilitas yang digunakan
+```css
+/* Input */
+.btn {
+  @apply font-bold py-2 px-4 rounded !important;
+}
+.title{
+    @apply !font-bold text-center;
+}
+
+/* Output */
+.btn {
+  font-weight: 700 !important;
+  padding-top: .5rem !important;
+  padding-bottom: .5rem !important;
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+  border-radius: .25rem !important;
+}
+.title{
+    font-weight: 700 !important;
+    text-align: center;
+}
+
+```
+
+
 # Referensi
 - https://tailwindcss.com/
-
-# note
-Setting up tailwind 2.0/ installation
-
-terdapat 2 cara umum untuk melakukan instalasi tailwind pada suatu proyek
-1. CDN
-Penggunaan CDN cukup mudah hanya perlu untuk menambahkan link tag cdn tailwing yang telah disediakan pada head html.
- - belum ada postcss atau rekomendasi
-
-2. Tailwind CSS CLI (Command Line Interface)
-	1. membuat file css sendiri
-	2. "@tailwind base" -> base directive -> reset
-	3. "@tailwind components" directive -> essenctially a responsive max-width container
-	4. "@taileind utilities" directive -> layer paling utama yang berisis class-class yang akan banyak digunakan dalam menggunakan css
-	5. npx tailwind-cli build css/taileind.css -o build/tailwind.css (membuat input dan output file)
-	6 tailwind directive -> tailwind layer 
-	7. outpu file akan berubah sesuai isi dari input file setiap di postcss dijalankan
-- menggunakan vite 
-	npm init -y
-	npm i -D tailwind css postcss autoprefixer vite
-	- scripts -> dev -> vite
-generate 2 config file dengan npx tw init -p
-postcss config
-- linkkan link di html ke tailwind.css
-- npm run dev
-
-
-The utility-first workflow
-menggunakan semua layer utilities yang telah disediakan oleh tailwind
-(project-base membuat page)
--> layouting, sizing, typography(uppercase), coloring (font, bg), spacing (mt to all except 1child)
-<-pake dari css tapi bikin lewat tailwind
-
-
-## Responsive Design
-- 5 breakpoints  sm, md, lg, xl, 2xl (responsive varieance) can use to any utilities in tw
-- using min-width media queries
-- use it as prefix before the utilities (ex: sm:bg-yellow)
-- flex and grid
--
-
-## Hover, focus, and other states
-- ex_ hover:bg-white-700,focus,active
-- active in not active, activate it from tw.config -> variant (hover, focus, active dll.) -> backgroundColor: ["active"], enable overriden list of variant the enable by default. so put in on -> extend:{}. because is just being enable for common thing, if it doesnt work its may need tobe enabled in config
-
-
-## Composing Utilities with @apply rekomended to use it on common component that have high reuseablity 
-- digunakan untuk membuat suatu class custom dengan mengunakan utlities dari tw, dituliskan di tailwind.css sebelum utlities atau tempant lain yang diperlukan karena class akan diproriatas kan berdasasrkan layer
-- atau menambahkan layer baru dengan "@layer base/component/utylities"
-- .btn{ @apply bg-blue-500} -> generated to conventional class
-
-
-## extracting reusable components
-- extraction on markup level using react jsx
-- make component
-
-## costumizing your design
-- tw.config -> theme (color, font size, spacing scale )  
-- npx tailwindcss init tailwind-full.config.js --full untuk melihat semua config default dari tw
-- untuk menambahakan constume style bisa tambahakna ke theme: {extend:{ color:{ brand: "#fff", "brand-light":"#ronrg"}}}
-- or use object theme color -> brand:{ DEFAULT:"#fff" ,light: "#fjn"} 
-- font costumize: embed font from google link tag > theme -> extend -> fontFamily: {newFont:"Poppins, san-serif}
-
-## optimizing for production
-menambahkan theme baru akan menamabahkan semua kemungkinana utilitas class baru di tw.css, tw akan mengenereate banyak sekali class yang dapat memberatkan proses produksi
-- add sctipt -> build : vite buld, npm run build - tailwind not purging unsused style
-- purgeCss as solution
-	di tw.config -> purge -> tambahakan file path  yang harus di scan oleh purge
-- purge melakukan scanningg dengwn mencqri class sebai string
-
-=tw 2.1:
-Juat-in-time compiler
-=ARBITRARY VALUE `
-=important !
-
-=2.2 newcvariant pseudoclass 
-
-=3.0
-JIT-- just-in-time
-print:hidden
-snap scroll
-scrool smooth, scroll-mt-00
-multi column layout, column-x
-form default brand. in form, accennt-color, file:bg-x
-detail tag, summart, ~div p. use new open variant, open:
-fancy underline style, decoration-color
-arbitary property, <img class:[clip-path:circle(70%_at_20%_30%)] >
-play cdn access
-
-
-
-- apa itu tailwind dan kenapa harus pake tailwind dengan pakai tailwind gimana, gk pake tailwind gimna
-- tambahin perbandingan framework yang pake utility first sama enggak
-- perbedaan kekurangan kelebihan dari dengan pakai CLI atau pake Play CDN
-
+https://darkghosthunter.medium.com/tailwind-the-base-the-components-and-the-utilities-a81137c52534
