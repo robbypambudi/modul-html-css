@@ -519,7 +519,7 @@ berikut contohnya:
 }
 ```
 
-@apply
+## @apply
 Tailwind directives yang terkahir adalah `@apply`. Seperti yang telah kita pelajari pada *Reusing Style*, Tailwind directive ini digunakan untuk membuat kostum css sendiri dengan tetap menggunakan class utilitas milik Tailwind. 
 contohnya:
 ```css
