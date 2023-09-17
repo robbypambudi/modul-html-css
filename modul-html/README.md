@@ -18,8 +18,9 @@
     - [Tag Gambar](#tag-gambar)
     - [Tag Daftar (List)](#tag-daftar-list)
     - [Tag Table](#tag-table)
-    - [Tag Form & Input](#tag-form--input)
-    - [Tag div & span](#tag-div--span)
+    - [Tag Form \& Input](#tag-form--input)
+    - [Tag div \& span](#tag-div--span)
+  - [Referensi](#referensi)
 
 # Persiapan
 
@@ -76,7 +77,7 @@ Kode di bawah menunjukkan contoh elemen `a` yang digunakan dengan atribut wajib 
 Kode di atas memberikan contoh atribut `href` yang dimiliki oleh elemen `a`. Atribut ini berguna untuk menentukan link yang akan dituju ketika dibuka dari sebuah elemen (nama “href” sendiri merupakan kepanjangan dari hyperlink reference). Sedangkan kode berikut menunjukkan contoh elemen `img` yang digunakan dengan atribut khusus elemen tersebut yakni `src`:
 
 ```html
-<img src="gambar.jpg" width="104" height="142">
+<img src="gambar.jpg" width="104" height="142" />
 ```
 
 Atribut-atribut yang dimiliki oleh tiap-tiap elemen akan dibahas lebih lanjut pada pembahasan masing-masing elemen.
@@ -100,6 +101,7 @@ Ada beberapa aturan dalam membuat dokumen HTML. Semua dokumen HTML harus dimulai
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Judul Halaman</title>
     <link rel="stylesheet" href="stylesheet.css" />
   </head>
@@ -118,6 +120,7 @@ Berdasarkan contoh struktur HTML diatas, perlu diketahui:
    Berisi informasi dokumen atau settingan dokumen HTML yang tidak terlihat ketika membuka halaman. Ada tiga elemen yang harus diletakkan di dalam `<head>` yaitu:
    - Pengkodean karakter (encoding) <br/>
      `<meta charset="utf-8">` untuk memastikan situs web menggunakan pengkodean karakter yang konsisten. UTF-8 adalah pengkodean karakter yang direkomendasikan untuk HTML5.
+   - `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Ini adalah meta tag yang sering digunakan untuk mengoptimalkan tampilan situs web pada perangkat bergerak. Ini mengatur lebar tampilan (viewport) agar sesuai dengan lebar perangkat dan memulai dengan faktor perbesaran awal 1.0.
    - Judul situs web <br/>
      `<title>Judul Halaman</title>` judul yang muncul pada tab / bagian atas browser.
    - Hubungan dengan file CSS <br/>
@@ -202,7 +205,7 @@ Pada contoh tersebut kita mengisi atribut `src` dengan file yang berada di dalam
 Terdapat 3 macam daftar yang dapat kita gunakan dalam HTML, yakni:
 
 1. Unordered List (`ul`) <br/>
-   Merupakan daftar yang tidak memiliki nomor urut. Penggunaan unordered list akan menghasilkan daftar dengan awalan suatu simbol, secara bawaan  simbol yang digunakan yakni simbol lingkaran (●). Untuk mengisi listnya kita dapat mengapit konten dengan tag `<li>`.
+   Merupakan daftar yang tidak memiliki nomor urut. Penggunaan unordered list akan menghasilkan daftar dengan awalan suatu simbol, secara bawaan simbol yang digunakan yakni simbol lingkaran (●). Untuk mengisi listnya kita dapat mengapit konten dengan tag `<li>`.
 
    ```html
    <h2>Contoh unordered list</h2>
@@ -216,7 +219,7 @@ Terdapat 3 macam daftar yang dapat kita gunakan dalam HTML, yakni:
    Ilustrasi:
 
    ![image1](https://user-images.githubusercontent.com/33245436/191101791-ade86151-457d-44a7-8a9a-72ba6824c098.png)
-   
+
 2. Ordered List (`ol`) <br/>
    Merupakan daftar yang yang memiliki nomor urut dengan awalan angka. Untuk mengisi listnya kita menggunakan tag `<li>`.
 
@@ -349,13 +352,12 @@ Tag `<div>` merupakan block-level elemen yakni elemen yang selalu dimulai dengan
 <div style="background-color:black;color:white;padding:20px;">
   <h2>London</h2>
   <p>
-    London is the capital city of England. It is the most populous city in the
-    United Kingdom, with a metropolitan area of over 13 million inhabitants.
+    London is the capital city of England. It is the most populous city in the United Kingdom, with
+    a metropolitan area of over 13 million inhabitants.
   </p>
   <p>
-    Standing on the River Thames, London has been a major settlement for two
-    millennia, its history going back to its founding by the Romans, who named
-    it Londinium.
+    Standing on the River Thames, London has been a major settlement for two millennia, its history
+    going back to its founding by the Romans, who named it Londinium.
   </p>
 </div>
 ```
@@ -368,8 +370,7 @@ Tag <span> merupakan inline-level elemen yakni elemen yang tidak dimulai dengan 
 
 ```html
 <p>
-  My mother has <span style="color: blue; font-weight: bold">blue</span>eyes and
-  my father has
+  My mother has <span style="color: blue; font-weight: bold">blue</span>eyes and my father has
   <span style="color: darkolivegreen; font-weight: bold">dark green</span>
   eyes.
 </p>
@@ -378,7 +379,7 @@ Tag <span> merupakan inline-level elemen yakni elemen yang tidak dimulai dengan 
 Ilustrasi:
 
 ![image7](https://user-images.githubusercontent.com/68275535/130475641-578b3af0-ee2a-449e-8758-f4ec1e223761.png)
-  
+
 ## Referensi
 
 - https://www.w3schools.com/
